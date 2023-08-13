@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:prime_user_add/screen/auth.dart';
 import 'package:prime_user_add/screen/home.dart';
 
 class UserScreen extends StatelessWidget {
@@ -36,7 +39,8 @@ class UserScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const HomeScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()),
                       );
                     },
                     shape: const CircleBorder(),
@@ -48,7 +52,13 @@ class UserScreen extends StatelessWidget {
                   FloatingActionButton(
                     heroTag: "add_user",
                     backgroundColor: Theme.of(context).colorScheme.primary,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AuthScreen()),
+                      );
+                    },
                     shape: const CircleBorder(),
                     child: const Icon(
                       Icons.add,
@@ -71,6 +81,28 @@ class UserScreen extends StatelessWidget {
                 'Edit Profiles',
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Theme.of(context).colorScheme.primary,
+                    ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              child: Text(
+                'Logout',
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Colors.red[800],
                     ),
               ),
             ),
