@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:prime_user_add/Loader/ducks.dart';
 import 'package:prime_user_add/widgets/user_image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -208,10 +209,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         const SizedBox(
                           height: 12,
                         ),
-                        if (_isAuthenticating)
-                          CircularProgressIndicator(
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                        if (_isAuthenticating) const DucksLoader(),
                         if (!_isAuthenticating)
                           Row(
                             children: [

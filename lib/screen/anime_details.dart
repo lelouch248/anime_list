@@ -80,7 +80,7 @@ class AnimeDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            VideoPlayerScreen(videoUrl: animeData['trailer_link']),
+            VideoPlayerScreen(videoUrl: animeData['trailer_link'] ?? 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' ),
             Text(
               'Recommendations:',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(

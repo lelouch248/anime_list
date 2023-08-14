@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prime_user_add/Loader/ducks.dart';
 
 class AnimeCard extends StatelessWidget {
   final String imageUrl;
@@ -29,6 +30,24 @@ class AnimeCard extends StatelessWidget {
               child: Image.network(
                 imageUrl,
                 fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return const Center(
+                    child: Icon(Icons.error),
+                  );
+                },
               ),
             ),
             Positioned(
